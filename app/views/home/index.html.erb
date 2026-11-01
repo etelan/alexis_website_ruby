@@ -1,0 +1,30 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "wii_menu", "data-turbo-track": "reload" %>
+<% end %>
+
+<div class="wii-menu-page">
+  <%# TODO: cursor presence goes here later %>
+
+  <div class="wii-whole-box">
+    <div class="wii-grid">
+      <% (1..15).each do |id| %>
+        <% tile = @tiles.find { |t| t[:id] == id } %>
+
+        <% if tile %>
+          <%= link_to tile[:url], class: "wii-tile" do %>
+            <%= image_tag tile[:image], class: "wii-tile-image", alt: tile[:image_alt] %>
+          <% end %>
+        <% else %>
+          <div class="wii-tile"></div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="wii-footer">
+      <div class="timebox">
+        <div class="time">12:00</div>
+      </div>
+      <div class="date">Sun 1/1</div>
+    </div>
+  </div>
+</div>
